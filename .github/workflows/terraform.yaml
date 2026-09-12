@@ -9,7 +9,7 @@ on:
 env:
   region: us-east-1
 
-premissions:
+permissions:
   id-token: write
   contents: read
 
