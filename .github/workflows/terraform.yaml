@@ -6,10 +6,6 @@ on:
       - main
 
 
-permissions:
-    id-token: write
-    contents: read
-
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -22,11 +18,13 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::996904209733:role/github-actions
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
+
       - name: Terraform format
         run: terraform fmt -check
 
