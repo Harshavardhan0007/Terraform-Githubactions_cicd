@@ -1,0 +1,29 @@
+name: terraform automation 
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform format
+        run: terraform fmt 
+
+      - name: Terraform init
+        run: terraform init 
+
+      - name: Terraform Validate
+        run: terraform validate
+      
+      - name: Terraform plan 
+        run: terraform plan 
